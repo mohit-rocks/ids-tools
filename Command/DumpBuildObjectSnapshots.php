@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace PreviousNext\IdsTools\Command;
 
-use Drupal\pinto\Build\BuildRegistryInterface;
 use Pinto\Attribute\Definition;
 use Pinto\PintoMapping;
 use PreviousNext\Ds\Common\Vo\Id\Id;
 use PreviousNext\IdsTools\DependencyInjection\IdsCompilerPass;
-use PreviousNext\IdsTools\Rendering\ComponentRender;
 use PreviousNext\IdsTools\Scenario\CompiledScenario;
 use PreviousNext\IdsTools\Scenario\Scenarios;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -45,7 +43,6 @@ final class DumpBuildObjectSnapshots extends Command {
    * @phpstan-param array<class-string<\Pinto\List\ObjectListInterface>> $primaryLists
    */
   public function __construct(
-    private BuildRegistryInterface $buildRegistry,
     private PintoMapping $pintoMapping,
     #[Autowire(param: 'ids.build_objects')]
     private array $buildObjectConfiguration,
@@ -82,7 +79,7 @@ final class DumpBuildObjectSnapshots extends Command {
     $scenarios = [];
     foreach (Scenarios::findScenarios($this->pintoMapping, $this->primaryLists) as $scenario => $scenarioSubject) {
       $this->stopwatch->lap('object generation');
-      $pintoEnum = $scenario->pintoEnum ?? throw new \LogicException();
+      $pintoEnum = $scenario->pintoEnum;
       $definition = ((new \ReflectionEnumUnitCase($pintoEnum::class, $pintoEnum->name))->getAttributes(Definition::class)[0] ?? NULL)?->newInstance() ?? throw new \LogicException('Missing ' . Definition::class);
       $scenarios[] = [$scenario, $scenarioSubject, $definition->className];
     }
@@ -93,16 +90,11 @@ final class DumpBuildObjectSnapshots extends Command {
     $io->writeln('Writing snapshots');
 
     $fs = new Filesystem();
-    foreach ($scenarios as [$scenario, $scenarioSubject, $objectClassName]) {
+    foreach ($scenarios as $scenarioData) {
+      [$scenario, $scenarioSubject, $objectClassName] = $scenarioData;
       try {
         Id::resetGlobalState();
-
-        $rendered = ComponentRender::render(
-          $this->pintoMapping,
-          $this->buildRegistry,
-          // When dumping snapshots, only the object in question not the full context.
-          $scenarioSubject->obj,
-        );
+        $rendered = ($scenarioSubject->obj)();
       }
       catch (\Throwable $e) {
         throw new \Exception(\sprintf('Failed to render scenario from %s', (string) $scenario), previous: $e);
@@ -118,7 +110,7 @@ final class DumpBuildObjectSnapshots extends Command {
         ]));
       }
 
-      $io->writeln(\sprintf("Writing %s to %s", $scenario->id ?? throw new \LogicException(), $fileName));
+      $io->writeln(\sprintf("Writing %s to %s", $scenario->id, $fileName));
     }
     $this->stopwatch->stop('snapshot write');
 

@@ -1,25 +1,24 @@
 {
     "name": "previousnext/ids-tools",
     "type": "library",
-    "version": "0.0.1",
     "keywords": [
         "dev"
     ],
     "require": {
         "php": ">=8.2",
         "php-webdriver/webdriver": "^1.15",
-        "symfony/config": "^6 || ^7.2",
-        "symfony/console": "^6 || ^7.2",
-        "symfony/dependency-injection": "^6 || ^7.2",
-        "symfony/dotenv": "^6 || ^7.2",
-        "symfony/property-access": "^7.2",
-        "symfony/runtime": "^6 || ^7.2",
-        "symfony/serializer": "^6 || ^7.2",
-        "symfony/stopwatch": "^6 || ^7.2",
+        "symfony/config": "^7.2 || ^8",
+        "symfony/console": "^7.2 || ^8",
+        "symfony/dependency-injection": "^7.2 || ^8",
+        "symfony/dotenv": "^7.2 || ^8",
+        "symfony/property-access": "^7.2 || ^8",
+        "symfony/runtime": "^7.2 || ^8",
+        "symfony/serializer": "^7.2 || ^8",
+        "symfony/stopwatch": "^7.2 || ^8",
         "thecodingmachine/safe": "^3.3",
         "twig/twig": "^3.21",
         "imagine/imagine": "^1.5",
-        "good-php/reflection": "^2.2"
+        "good-php/reflection": "^2.5.1"
     },
     "autoload": {
         "psr-4": {

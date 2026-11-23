@@ -32,15 +32,17 @@ final class ModifierBagTypeTest extends TestCase {
       }
     }
 
-    static::assertEqualsCanonicalizing($expectedModifiers, $actualModifiers);
+    static::assertEquals($expectedModifiers, $actualModifiers);
   }
 
   public static function containers(): \Generator {
     $commonModifiers = [
       Common\Atom\Button\Button::class . '$modifiers' => Common\Atom\Button\ButtonModifierInterface::class,
+      Common\Atom\Heading\Heading::class . '$modifiers' => Common\Atom\Heading\HeadingModifierInterface::class,
       Common\Atom\Icon\Icon::class . '$modifiers' => Common\Atom\Icon\IconModifierInterface::class,
       Common\Component\Card\Card::class . '$modifiers' => Common\Component\Card\CardModifierInterface::class,
       Common\Component\HeroBanner\HeroBanner::class . '$modifiers' => Common\Component\HeroBanner\HeroBannerModifierInterface::class,
+      Common\Component\HeroSearch\HeroSearch::class . '$modifiers' => Common\Component\HeroSearch\HeroSearchModifierInterface::class,
       Common\Component\InPageNavigation\InPageNavigation::class . '$modifiers' => Common\Component\InPageNavigation\InPageNavigationIncludeElementsInterface::class,
       Common\Component\ListItem\ListItem::class . '$modifiers' => Common\Component\ListItem\ListItemModifierInterface::class,
       Common\Component\SocialShare\SocialShare::class . '$modifiers' => Common\Component\SocialShare\SocialShareModifierInterface::class,
@@ -56,9 +58,11 @@ final class ModifierBagTypeTest extends TestCase {
 
     $mixtapeModifiers = [
       Mixtape\Atom\Button\Button::class . '$modifiers' => Common\Atom\Button\ButtonModifierInterface::class,
+      Mixtape\Atom\Heading\Heading::class . '$modifiers' => Common\Atom\Heading\HeadingModifierInterface::class,
       Mixtape\Atom\Icon\Icon::class . '$modifiers' => Common\Atom\Icon\IconModifierInterface::class,
       Mixtape\Component\Card\Card::class . '$modifiers' => Common\Component\Card\CardModifierInterface::class,
       Mixtape\Component\HeroBanner\HeroBanner::class . '$modifiers' => Common\Component\HeroBanner\HeroBannerModifierInterface::class,
+      Mixtape\Component\HeroSearch\HeroSearch::class . '$modifiers' => Common\Component\HeroSearch\HeroSearchModifierInterface::class,
       Mixtape\Component\InPageNavigation\InPageNavigation::class . '$modifiers' => Common\Component\InPageNavigation\InPageNavigationIncludeElementsInterface::class,
       Mixtape\Component\ListItem\ListItem::class . '$modifiers' => Common\Component\ListItem\ListItemModifierInterface::class,
       Mixtape\Component\SocialShare\SocialShare::class . '$modifiers' => Common\Component\SocialShare\SocialShareModifierInterface::class,
@@ -74,10 +78,12 @@ final class ModifierBagTypeTest extends TestCase {
 
     $nswModifiers = [
       Nsw\Atom\Button\Button::class . '$modifiers' => Common\Atom\Button\ButtonModifierInterface::class,
+      Nsw\Atom\Heading\Heading::class . '$modifiers' => Common\Atom\Heading\HeadingModifierInterface::class,
       Nsw\Atom\Icon\Icon::class . '$modifiers' => Common\Atom\Icon\IconModifierInterface::class,
       Nsw\Component\Card\Card::class . '$modifiers' => Common\Component\Card\CardModifierInterface::class,
       Nsw\Component\Filters\Filters::class . '$modifiers' => Nsw\Component\Filters\FiltersModifierInterface::class,
       Nsw\Component\HeroBanner\HeroBanner::class . '$modifiers' => Common\Component\HeroBanner\HeroBannerModifierInterface::class,
+      Nsw\Component\HeroSearch\HeroSearch::class . '$modifiers' => Common\Component\HeroSearch\HeroSearchModifierInterface::class,
       Nsw\Component\ListItem\ListItem::class . '$modifiers' => Common\Component\ListItem\ListItemModifierInterface::class,
       Nsw\Layout\Footer\Footer::class . '$modifiers' => Common\Layout\Footer\FooterModifierInterface::class,
       Nsw\Layout\Grid\Grid::class . '$modifiers' => Common\Layout\Grid\GridModifierInterface::class,
@@ -86,6 +92,7 @@ final class ModifierBagTypeTest extends TestCase {
       Nsw\Layout\Masthead\Masthead::class . '$modifiers' => Common\Layout\Masthead\MastheadModifierInterface::class,
       Nsw\Layout\Section\Section::class . '$modifiers' => Common\Layout\Section\SectionModifierInterface::class,
       Nsw\Layout\Sidebar\Sidebar::class . '$modifiers' => Common\Layout\Sidebar\SidebarModifierInterface::class,
+      Nsw\Component\Steps\Steps::class . '$modifiers' => Common\Component\Steps\StepsModifierInterface::class,
     ];
 
     foreach (IdsContainer::testContainers() as $ds => $container) {
