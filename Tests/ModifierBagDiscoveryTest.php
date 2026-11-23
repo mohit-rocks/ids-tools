@@ -42,6 +42,9 @@ final class ModifierBagDiscoveryTest extends TestCase {
         Common\Atom\Button\ButtonLayout::class,
         Common\Atom\Button\ButtonStyle::class,
       ],
+      Mixtape\Atom\Heading\Heading::class => [
+        Mixtape\Atom\Heading\HeadingVisualSize::class,
+      ],
       Mixtape\Atom\Icon\Icon::class => [
         Mixtape\Atom\Icon\IconSize::class,
         Mixtape\Atom\Icon\Icons::class,
@@ -51,6 +54,9 @@ final class ModifierBagDiscoveryTest extends TestCase {
       ],
       Mixtape\Component\HeroBanner\HeroBanner::class => [
         Mixtape\Component\HeroBanner\HeroBannerBackground::class,
+      ],
+      Mixtape\Component\HeroSearch\HeroSearch::class => [
+        Mixtape\Component\HeroSearch\HeroSearchBackground::class,
       ],
       Mixtape\Component\InPageNavigation\InPageNavigation::class => [
         Common\Component\InPageNavigation\IncludeHeadingLevels::class,
@@ -86,6 +92,8 @@ final class ModifierBagDiscoveryTest extends TestCase {
       ],
       Mixtape\Layout\Section\Section::class => [
         Mixtape\Layout\Section\SectionSize::class,
+        Mixtape\Layout\Section\SectionSizeTop::class,
+        Mixtape\Layout\Section\SectionSizeBottom::class,
         Mixtape\Layout\Section\SectionBackground::class,
         Mixtape\Layout\Section\SectionWidth::class,
       ],
@@ -98,6 +106,9 @@ final class ModifierBagDiscoveryTest extends TestCase {
       Nsw\Atom\Button\Button::class => [
         Common\Atom\Button\ButtonLayout::class,
         Common\Atom\Button\ButtonStyle::class,
+      ],
+      Nsw\Atom\Heading\Heading::class => [
+        Nsw\Atom\Heading\HeadingVisualSize::class,
       ],
       Nsw\Atom\Icon\Icon::class => [
         Nsw\Atom\Icon\IconSize::class,
@@ -121,7 +132,12 @@ final class ModifierBagDiscoveryTest extends TestCase {
         Nsw\Layout\Masthead\MastheadBackground::class,
       ],
       Nsw\Layout\Section\Section::class => [
+        Nsw\Layout\Section\LinkPosition::class,
         Nsw\Layout\Section\SectionBackground::class,
+      ],
+      Nsw\Component\Steps\Steps::class => [
+        Nsw\Component\Steps\StepsBackground::class,
+        Nsw\Component\Steps\StepsSize::class,
       ],
     ];
 
